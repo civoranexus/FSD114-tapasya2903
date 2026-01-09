@@ -1,0 +1,49 @@
+
+.home-grid{
+   padding: 2rem;
+   max-width: 1200px;
+   margin: 0 auto;
+}
+.home-grid .box-container{
+   display: grid;
+   grid-template-columns: repeat(auto-fit, 27.5rem);
+   gap: 1.5rem;
+   justify-content: center;
+   align-items: flex-start;
+}
+.home-grid .box-container .box{
+   padding: 2rem;
+   border-radius: .5rem;
+}
+.home-grid .box-container .box .title{
+   font-size: 2rem;
+   text-transform: capitalize;
+}
+.home-grid .box-container .box .flex{
+   display: flex;
+   flex-wrap: wrap;
+   gap: 1.5rem;
+   margin-top: 2rem;
+}
+.home-grid .box-container .flex a{
+   padding: 1rem 1.5rem;
+   font-size: 1.5rem;
+   border-radius: .5rem;
+   display: inline-flex;
+   align-items: center;
+   gap: 1rem;
+}
+.home-grid .box-container .tutor{
+   padding: 1rem 0;
+   font-size: 1.8rem;
+   line-height: 2;
+}
+.home-grid .box-container .likes{
+   font-size: 1.7rem;
+   margin-top: 1.5rem;
+}
+@media (max-width: 450px){
+   .home-grid .box-container{
+      grid-template-columns: 1fr;
+   }
+}
