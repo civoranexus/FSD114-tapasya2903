@@ -1,3 +1,5 @@
+# EduVillage – Online Learning Platform
+
 **EduVillage** is an online learning platform developed as part of the **CivoraX Winter Tech Internship 2026** by **Civora Nexus Pvt. Ltd.**  
 The project aims to provide a structured digital environment where students can access learning content, teachers can manage courses, and administrators can oversee platform activities.
 
@@ -6,88 +8,132 @@ The project aims to provide a structured digital environment where students can 
 ## 📌 Project Overview
 
 EduVillage is designed to simulate a real-world e-learning system similar to platforms like Udemy or Coursera.  
-It focuses on role-based access, course management, and a user-friendly learning experience.
+It focuses on role-based access control, course and content management, and a user-friendly learning experience.
 
 ---
 
-## 👥 User Roles
+## 🚧 Current Development Phase
 
-The platform supports the following user roles:
+**Phase 1 – Architecture & Database Design**
 
-- **Student**
-  - Register and log in
-  - View available courses
-  - Enroll in courses
-  - Access learning content
-  - Track learning progress
+- Defining user roles and responsibilities  
+- Designing the initial database schema  
+- Structuring frontend and backend modules  
+- Preparing the project for core feature implementation  
 
-- **Teacher**
-  - Create and manage courses
-  - Upload learning materials
-  - Create quizzes and assignments
+---
 
-- **Admin**
-  - Manage users and courses
-  - Monitor platform activity
-  - View reports and analytics
+## 👥 User Roles & Responsibilities
+
+### Student
+- Register and login to the platform  
+- Enroll in available courses  
+- Access learning content (videos, text, quizzes)  
+- Track course progress and completion  
+
+### Teacher
+- Login to teacher dashboard  
+- Create and manage courses and lessons  
+- Add quizzes and assignments  
+- View student progress and performance  
+
+### Admin
+- Manage all users (students and teachers)  
+- Manage courses and platform content  
+- Monitor platform activity and reports  
+
+---
+
+## 🗄️ Initial Database Schema Design
+
+### Users
+- id  
+- name  
+- email  
+- password  
+- role (student / teacher / admin)  
+
+### Courses
+- id  
+- title  
+- description  
+- category  
+- created_by (teacher id)  
+
+### Lessons
+- id  
+- course_id  
+- title  
+- content_type (video / text / pdf)  
+- content_url  
+
+### Enrollments
+- id  
+- user_id  
+- course_id  
+- progress_percentage  
+
+### Quizzes
+- id  
+- course_id  
+- question  
+- options  
+- correct_answer  
 
 ---
 
 ## ✨ Features
 
-- User authentication (Student / Teacher / Admin)
-- Course listing and course details
-- Student dashboard
-- Role-based access control
-- Responsive user interface
-- Structured project architecture
+- Secure user authentication (Student / Teacher / Admin)  
+- Role-based access control  
+- Course listing and course details  
+- Student learning dashboard  
+- Course progress tracking  
+- Responsive user interface  
+- Clean and structured project architecture  
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-- HTML
-- CSS
-- JavaScript
+- HTML  
+- CSS  
+- JavaScript  
 
 ### Backend (Planned / In Progress)
-- Node.js
-- Express.js
+- Node.js  
+- Express.js  
 
 ### Database (Planned)
-- MongoDB
+- MongoDB  
 
 ### Version Control
-- Git
-- GitHub
+- Git  
+- GitHub  
 
 ---
 
 ## 📂 Project Structure
+
 EduVillage/
 │── frontend/
-│   ├── index.html
-│   ├── login.html
-│   ├── signup.html
-│   ├── dashboard.html
-│   ├── courses.html
-│   ├── css/
-│   └── js/
-│
-│── backend/       
+│── backend/
 │── README.md
+
 
 ---
 
 ## 📄 Documentation
 
-The project documentation includes:
-- Project overview and objectives
-- Module and feature explanation
-- User roles and workflows
-- Database schema (conceptual)
-- API documentation (to be added)
+This README serves as the primary documentation and includes:
+- Project overview and objectives  
+- User roles and workflows  
+- Feature list  
+- Conceptual database schema  
+- Development phase tracking  
+
+Detailed API documentation will be added in later phases.
 
 ---
 
@@ -102,13 +148,12 @@ The project documentation includes:
 
 ## 📌 Note
 
-This project is developed strictly following the guidelines and requirements provided by Civora Nexus Pvt. Ltd.  
-All branding, assets, and design standards are respected as per official instructions.
+This project is developed strictly according to the guidelines and requirements provided by **Civora Nexus Pvt. Ltd.**  
+All branding, assets, and design standards are followed as per official instructions.
 
 ---
 
 ## 🙌 Acknowledgment
 
 I would like to thank **Civora Nexus Pvt. Ltd.** for providing this opportunity to work on a real-world full stack development project and gain hands-on industry experience.
-
 
