@@ -1,0 +1,27 @@
+{
+  "name": "fsd114-tapasya2903",
+  "version": "1.0.0",
+  "description": "**EduVillage** is an online learning platform developed as part of the **CivoraX Winter Tech Internship 2026** by **Civora Nexus Pvt. Ltd.**  \r The project aims to provide a structured digital environment where students can access learning content, teachers can manage courses, and administrators can oversee platform activities.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/civoranexus/FSD114-tapasya2903.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/civoranexus/FSD114-tapasya2903/issues"
+  },
+  "homepage": "https://github.com/civoranexus/FSD114-tapasya2903#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

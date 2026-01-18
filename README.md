@@ -1,133 +1,159 @@
-# 🚀 CivoraX Internship Program 2025-26
+# EduVillage – Online Learning Platform
 
-<p align="center">
-  <img src="https://internship.civoranexus.com/CivoraX.png" alt="CivoraX Logo" width="200"/>
-</p>
-
-<p align="center">
-  <strong>Launch your tech career with real projects, expert mentorship, and industry-recognized certification</strong>
-</p>
-
-
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Duration-5%20Weeks-blue" alt="Duration"/>
-  <img src="https://img.shields.io/badge/Start%20Date-Jan%205%2C%202026-green" alt="Start Date"/>
-  <img src="https://img.shields.io/badge/End%20Date-Feb%208%2C%202026-orange" alt="End Date"/>
-  <img src="https://img.shields.io/badge/Mode-Remote--First-purple" alt="Mode"/>
-</p>
+**EduVillage** is an online learning platform developed as part of the **CivoraX Winter Tech Internship 2026** by **Civora Nexus Pvt. Ltd.**  
+The project aims to provide a structured digital environment where students can access learning content, teachers can manage courses, and administrators can oversee platform activities.
 
 ---
 
-## 📊 Program Statistics
+## 📌 Project Overview
 
-| Metric | Value |
-|--------|-------|
-| 🎓 Interns Trained | 300+ |
-| 💼 Live Projects | 20 |
-| ⏱️ Program Duration | 5 Weeks |
+EduVillage is designed to simulate a real-world e-learning system similar to platforms like Udemy or Coursera.  
+It focuses on role-based access control, course and content management, and a user-friendly learning experience.
 
 ---
 
+## 🚧 Current Development Phase
 
-## 📅 Program Details
+**Phase 1 – Architecture & Database Design**
 
-| Detail | Information |
-|--------|-------------|
-| **Duration** | 5-week intensive program |
-| **Dates** | January 5 - February 8, 2026 |
-| **Format** | Remote-first with live sessions and workshops |
-| **Structure** | Real-time project work with weekly milestones |
-
----
-
-## ✅ Eligibility Criteria
-
-- ✔️ Students from **any year or degree program**
-- ✔️ Recent graduates and **career switchers** welcome
-- ✔️ **Basic programming knowledge** required
-- ✔️ Strong **passion for technology** and learning
+- Defining user roles and responsibilities  
+- Designing the initial database schema  
+- Structuring frontend and backend modules  
+- Preparing the project for core feature implementation  
 
 ---
 
-## 🛠️ Technologies You'll Master
+## 👥 User Roles & Responsibilities
 
-| Category | Technologies |
-|----------|-------------|
-| **Frontend** | React, Next.js |
-| **Backend** | Node.js, Python |
-| **Advanced** | AI & Machine Learning |
-| **Infrastructure** | Cloud & DevOps |
-| **Mobile** | Cross-platform Development |
-| **Database** | SQL & NoSQL Systems |
-| **APIs** | RESTful & GraphQL |
-| **Workflow** | Agile & Git |
+### Student
+- Register and login to the platform  
+- Enroll in available courses  
+- Access learning content (videos, text, quizzes)  
+- Track course progress and completion  
 
----
+### Teacher
+- Login to teacher dashboard  
+- Create and manage courses and lessons  
+- Add quizzes and assignments  
+- View student progress and performance  
 
-## 📋 Application Process
-
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   01. Register  │───▶│  02. Team       │───▶│  03. Receive    │
-│   Online        │    │  Review         │    │  Confirmation   │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-```
-
-1. **📝 Register Online** - Complete your application form with details and preferences
-2. **🔍 CivoraX Team Review** - Our team reviews your application and qualifications
-3. **✉️ Eligibility Email** - Receive confirmation email if selected
-
-
-
-
-## 📞 Contact Information
-
-| Channel | Details |
-|---------|---------|
-| 📧 **Email** | [contact@civoranexus.com](mailto:contact@civoranexus.com) |
-| 📱 **Phone** | [+91 7350675192](tel:+917350675192) |
-| 📍 **Location** | 422605, Sangamner, Maharashtra, India |
-
-### 🔗 Social Links
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-CivoraX-blue?style=flat&logo=linkedin)](https://www.linkedin.com/company/civoranexus)
-[![Instagram](https://img.shields.io/badge/Instagram-CivoraX-E4405F?style=flat&logo=instagram)](https://www.instagram.com/civoranexus)
-[![Twitter](https://img.shields.io/badge/Twitter-CivoraX-1DA1F2?style=flat&logo=twitter)](https://twitter.com/civoranexus)
-[![YouTube](https://img.shields.io/badge/YouTube-CivoraX-FF0000?style=flat&logo=youtube)](https://www.youtube.com/@civoranexus)
+### Admin
+- Manage all users (students and teachers)  
+- Manage courses and platform content  
+- Monitor platform activity and reports  
 
 ---
 
-## 🏢 About Civora Nexus
+## 🗄️ Initial Database Schema Design
 
-**Civora Nexus Pvt. Ltd.** is a technology company empowering communities through innovative civic and healthcare technology solutions.
+### Users
+- id  
+- name  
+- email  
+- password  
+- role (student / teacher / admin)  
 
-### Company Services:
-- 🔄 Digital Transformation for Businesses
-- 🏘️ Smart Community & Enterprise Solutions
-- 💡 Affordable Tech Solutions
-- 📊 Data Analytics & Business Insights
-- 🎓 Innovation & Skill Development
-- 🤖 AI & Automation Solutions
+### Courses
+- id  
+- title  
+- description  
+- category  
+- created_by (teacher id)  
+
+### Lessons
+- id  
+- course_id  
+- title  
+- content_type (video / text / pdf)  
+- content_url  
+
+### Enrollments
+- id  
+- user_id  
+- course_id  
+- progress_percentage  
+
+### Quizzes
+- id  
+- course_id  
+- question  
+- options  
+- correct_answer  
 
 ---
 
-## 📚 Quick Links
+## ✨ Features
 
-- 🌐 [Official Website](https://civoranexus.com/)
-- 📋 [Internship Portal](https://civoranexus.com/internships)
-- 🔐 [Certificate Verification](https://internship.civoranexus.com)
-- 📄 [Privacy Policy](https://civoranexus.com/privacy-policy)
-- 📜 [Terms of Service](https://civoranexus.com/terms-and-conditions)
+- Secure user authentication (Student / Teacher / Admin)  
+- Role-based access control  
+- Course listing and course details  
+- Student learning dashboard  
+- Course progress tracking  
+- Responsive user interface  
+- Clean and structured project architecture  
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- HTML  
+- CSS  
+- JavaScript  
+
+### Backend (Planned / In Progress)
+- Node.js  
+- Express.js  
+
+### Database (Planned)
+- MongoDB  
+
+### Version Control
+- Git  
+- GitHub  
+
+---
+
+## 📂 Project Structure
+
+EduVillage/
+│── frontend/
+│── backend/
+│── README.md
 
 
+---
 
-<p align="center">
-  <strong>© 2025 Civora Nexus Pvt. Ltd. All rights reserved.</strong>
-</p>
+## 📄 Documentation
 
-<p align="center">
-  Made with ❤️ by CivoraX Team
-</p>
+This README serves as the primary documentation and includes:
+- Project overview and objectives  
+- User roles and workflows  
+- Feature list  
+- Conceptual database schema  
+- Development phase tracking  
 
+Detailed API documentation will be added in later phases.
+
+---
+
+## 📅 Internship Information
+
+- **Internship Program:** CivoraX Winter Tech Internship 2026  
+- **Organization:** Civora Nexus Pvt. Ltd.  
+- **Project ID:** FSD114  
+- **Project Domain:** Full Stack Development  
+
+---
+
+## 📌 Note
+
+This project is developed strictly according to the guidelines and requirements provided by **Civora Nexus Pvt. Ltd.**  
+All branding, assets, and design standards are followed as per official instructions.
+
+---
+
+## 🙌 Acknowledgment
+
+I would like to thank **Civora Nexus Pvt. Ltd.** for providing this opportunity to work on a real-world full stack development project and gain hands-on industry experience.
 
