@@ -1,6 +1,7 @@
 require("dotenv").config();
 const connectDB = require("./config/db");
 const express = require("express");
+const cors = require("cors");
 
 const app = express();
 const PORT = 5000;
@@ -9,6 +10,7 @@ const PORT = 5000;
 connectDB();
 
 // middleware
+app.use(cors());
 app.use(express.json());
 
 // routes
