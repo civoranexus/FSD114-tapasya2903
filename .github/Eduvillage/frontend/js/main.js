@@ -57,9 +57,54 @@ document.getElementById("signupBtn").addEventListener("click", async () => {
     }
 
     // ✅ Success
-    message.style.color = "green";
-    message.textContent = "Signup successful!";
+   message.style.color = "green";
+message.textContent = "Signup successful! Redirecting to login...";
+
+setTimeout(() => {
+  window.location.href = "login.html";
+}, 1500);
+
   } catch (error) {
     message.textContent = "Server error. Please try again later.";
+  }
+});
+
+/*login*/
+document.getElementById("loginBtn")?.addEventListener("click", async () => {
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value;
+  const message = document.getElementById("loginMessage");
+
+  message.textContent = "";
+  message.style.color = "red";
+
+  if (!email || !password) {
+    message.textContent = "Email and password are required.";
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:5000/api/users");
+    const users = await response.json();
+
+    const user = users.find(
+      (u) => u.email === email && u.password === password
+    );
+
+    if (!user) {
+      message.textContent = "Invalid email or password.";
+      return;
+    }
+
+    message.style.color = "green";
+    message.textContent = "Login successful!";
+
+    localStorage.setItem("user", JSON.stringify(user));
+
+    setTimeout(() => {
+      window.location.href = "dashboard.html";
+    }, 1000);
+  } catch (error) {
+    message.textContent = "Server error. Please try again.";
   }
 });
