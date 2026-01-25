@@ -10,24 +10,43 @@
 <body>
 
   <h2 id="welcome"></h2>
+  <button id="logoutBtn">Logout</button>
 
-  <h3>My Courses</h3>
-  <h3>Progress</h3>
-  <h3>Announcements</h3>
+  <div id="studentSection">
+    <h3>My Courses</h3>
+    <h3>Progress</h3>
+  </div>
+
+  <div id="teacherSection" style="display: none;">
+    <h3>Manage Courses</h3>
+    <h3>Student Performance</h3>
+  </div>
+
 
   <script>
-    const user = localStorage.getItem("user");
+    
+    const user = JSON.parse(localStorage.getItem("user"));
 
+    
     if (!user) {
-      // if not logged in, redirect to login
       window.location.href = "login.html";
     } else {
-      // if logged in, show user info
-      const userData = JSON.parse(user);
-      document.getElementById(
-        "welcome"
-      ).textContent = `Welcome ${userData.name} (${userData.role})`;
+      
+      document.getElementById("welcome").textContent =
+        `Welcome ${user.name} (${user.role})`;
+
+
+      if (user.role === "teacher") {
+        document.getElementById("teacherSection").style.display = "block";
+        document.getElementById("studentSection").style.display = "none";
+      }
     }
+
+    
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("user");
+      window.location.href = "login.html";
+    });
   </script>
 
 </body>
