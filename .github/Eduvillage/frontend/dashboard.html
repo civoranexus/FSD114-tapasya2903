@@ -1,53 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard | EduVillage</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
-  <h2 id="welcome"></h2>
-  <button id="logoutBtn">Logout</button>
+<div class="dashboard-wrapper">
 
-  <div id="studentSection">
-    <h3>My Courses</h3>
-    <h3>Progress</h3>
-  </div>
+  <!-- Sidebar -->
+  <aside class="dashboard-sidebar">
+    <h3>EduVillage</h3>
+    <p>Student Dashboard</p>
 
-  <div id="teacherSection" style="display: none;">
-    <h3>Manage Courses</h3>
-    <h3>Student Performance</h3>
-  </div>
+    <a href="home.html">Home</a>
+    <a href="courses.html">Browse Courses</a>
+    <a href="dashboard.html" class="active">Dashboard</a>
+    <a href="profile.html">My Profile</a>
+    <a href="contact.html">Contact</a>
+    <a href="logout.html">Logout</a>
+  </aside>
 
+  <!-- Main Content -->
+  <main class="dashboard-main">
 
-  <script>
-    
-    const user = JSON.parse(localStorage.getItem("user"));
+    <!-- Top Bar -->
+    <div class="dashboard-topbar">
+      <h2>Welcome, Student 👋</h2>
+    </div>
 
-    
-    if (!user) {
-      window.location.href = "login.html";
-    } else {
-      
-      document.getElementById("welcome").textContent =
-        `Welcome ${user.name} (${user.role})`;
+    <!-- Stats -->
+    <section class="dashboard-stats">
+      <div class="stat-card">
+        <h3>5</h3>
+        <p>Enrolled Courses</p>
+      </div>
 
+      <div class="stat-card">
+        <h3>3</h3>
+        <p>Courses in Progress</p>
+      </div>
 
-      if (user.role === "teacher") {
-        document.getElementById("teacherSection").style.display = "block";
-        document.getElementById("studentSection").style.display = "none";
-      }
-    }
+      <div class="stat-card">
+        <h3>2</h3>
+        <p>Completed Courses</p>
+      </div>
+    </section>
 
-    
-    document.getElementById("logoutBtn").addEventListener("click", () => {
-      localStorage.removeItem("user");
-      window.location.href = "login.html";
-    });
-  </script>
+    <!-- Enrolled Courses -->
+    <section class="dashboard-courses">
+      <h2>My Learning</h2>
+
+      <div class="course-grid">
+
+        <div class="course-card">
+          <h3>HTML Basics</h3>
+          <p>Progress: 60%</p>
+          <progress value="60" max="100"></progress>
+          <button>Continue</button>
+        </div>
+
+        <div class="course-card">
+          <h3>CSS Fundamentals</h3>
+          <p>Progress: 30%</p>
+          <progress value="30" max="100"></progress>
+          <button>Continue</button>
+        </div>
+
+        <div class="course-card">
+          <h3>JavaScript Basics</h3>
+          <p>Progress: 100%</p>
+          <progress value="100" max="100"></progress>
+          <button>View Certificate</button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+</div>
 
 </body>
 </html>
