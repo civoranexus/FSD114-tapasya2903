@@ -20,7 +20,7 @@
     <a href="dashboard.html" class="active">Dashboard</a>
     <a href="profile.html">My Profile</a>
     <a href="contact.html">Contact</a>
-    <a href="logout.html">Logout</a>
+    <a href="#" id="logoutBtn">Logout</a>
   </aside>
 
   <!-- Main Content -->
@@ -28,33 +28,20 @@
 
     <!-- Top Bar -->
     <div class="dashboard-topbar">
-      <h2>Welcome, Student 👋</h2>
+      <h2 id="welcomeText">Welcome 👋</h2>
     </div>
 
-    <!-- Stats -->
-    <section class="dashboard-stats">
-      <div class="stat-card">
-        <h3>5</h3>
-        <p>Enrolled Courses</p>
-      </div>
-
-      <div class="stat-card">
-        <h3>3</h3>
-        <p>Courses in Progress</p>
-      </div>
-
-      <div class="stat-card">
-        <h3>2</h3>
-        <p>Completed Courses</p>
-      </div>
+    <!-- Available Courses (Dynamic from Backend) -->
+    <section class="dashboard-courses">
+      <h2>Our Courses</h2>
+      <div id="courseGrid" class="course-grid"></div>
     </section>
 
-    <!-- Enrolled Courses -->
+    <!-- Enrolled Courses (Static for now – acceptable) -->
     <section class="dashboard-courses">
       <h2>My Learning</h2>
 
       <div class="course-grid">
-
         <div class="course-card">
           <h3>HTML Basics</h3>
           <p>Progress: 60%</p>
@@ -75,13 +62,65 @@
           <progress value="100" max="100"></progress>
           <button>View Certificate</button>
         </div>
-
       </div>
     </section>
 
   </main>
 
 </div>
+
+<!-- DASHBOARD SCRIPT -->
+<script>
+  // 🔐 Check login
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if (!user) {
+    window.location.href = "login.html";
+  } else {
+    document.getElementById("welcomeText").textContent =
+      `Welcome, ${user.name} 👋`;
+  }
+
+  // 🚪 Logout
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.removeItem("user");
+    window.location.href = "login.html";
+  });
+
+  // 📦 Load courses from backend
+  async function loadCourses() {
+    try {
+      const response = await fetch("http://localhost:5000/api/courses");
+      const courses = await response.json();
+
+      const grid = document.getElementById("courseGrid");
+      grid.innerHTML = "";
+
+      if (courses.length === 0) {
+        grid.innerHTML = "<p>No courses available</p>";
+        return;
+      }
+
+      courses.forEach(course => {
+        const card = document.createElement("div");
+        card.className = "course-card";
+
+        card.innerHTML = `
+          <h3>${course.title}</h3>
+          <p>${course.category}</p>
+          <p>${course.description}</p>
+          <button>View Course</button>
+        `;
+
+        grid.appendChild(card);
+      });
+    } catch (error) {
+      console.error("Failed to load courses", error);
+    }
+  }
+
+  loadCourses();
+</script>
 
 </body>
 </html>
