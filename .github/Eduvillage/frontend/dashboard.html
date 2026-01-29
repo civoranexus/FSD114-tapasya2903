@@ -23,55 +23,31 @@
     <a href="#" id="logoutBtn">Logout</a>
   </aside>
 
-  <!-- Main Content -->
+ 
   <main class="dashboard-main">
 
-    <!-- Top Bar -->
+
     <div class="dashboard-topbar">
       <h2 id="welcomeText">Welcome 👋</h2>
     </div>
 
-    <!-- Available Courses (Dynamic from Backend) -->
     <section class="dashboard-courses">
       <h2>Our Courses</h2>
       <div id="courseGrid" class="course-grid"></div>
     </section>
 
-    <!-- Enrolled Courses (Static for now – acceptable) -->
+   
     <section class="dashboard-courses">
       <h2>My Learning</h2>
-
-      <div class="course-grid">
-        <div class="course-card">
-          <h3>HTML Basics</h3>
-          <p>Progress: 60%</p>
-          <progress value="60" max="100"></progress>
-          <button>Continue</button>
-        </div>
-
-        <div class="course-card">
-          <h3>CSS Fundamentals</h3>
-          <p>Progress: 30%</p>
-          <progress value="30" max="100"></progress>
-          <button>Continue</button>
-        </div>
-
-        <div class="course-card">
-          <h3>JavaScript Basics</h3>
-          <p>Progress: 100%</p>
-          <progress value="100" max="100"></progress>
-          <button>View Certificate</button>
-        </div>
-      </div>
+      <div class="course-grid" id="myLearningGrid"></div>
     </section>
 
   </main>
 
 </div>
 
-<!-- DASHBOARD SCRIPT -->
 <script>
-  // 🔐 Check login
+ 
   const user = JSON.parse(localStorage.getItem("user"));
 
   if (!user) {
@@ -81,13 +57,13 @@
       `Welcome, ${user.name} 👋`;
   }
 
-  // 🚪 Logout
+
   document.getElementById("logoutBtn").addEventListener("click", () => {
     localStorage.removeItem("user");
     window.location.href = "login.html";
   });
 
-  // 📦 Load courses from backend
+
   async function loadCourses() {
     try {
       const response = await fetch("http://localhost:5000/api/courses");
@@ -120,6 +96,48 @@
   }
 
   loadCourses();
+
+  const enrolledCourses = [
+  { id: "html", title: "HTML Basics" },
+  { id: "css", title: "CSS Fundamentals" },
+  { id: "js", title: "JavaScript Basics" }
+];
+
+function loadMyLearning() {
+  const grid = document.getElementById("myLearningGrid");
+  grid.innerHTML = "";
+
+  enrolledCourses.forEach(course => {
+    let progress = localStorage.getItem(course.id) || 0;
+
+    const card = document.createElement("div");
+    card.className = "course-card";
+
+    card.innerHTML = `
+      <h3>${course.title}</h3>
+      <p>Progress: <span id="${course.id}-progress">${progress}</span>%</p>
+      <progress value="${progress}" max="100"></progress>
+      <button onclick="updateProgress('${course.id}')">
+        ${progress >= 100 ? "View Certificate" : "Continue"}
+      </button>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+function updateProgress(courseId) {
+  let progress = parseInt(localStorage.getItem(courseId)) || 0;
+
+  if (progress < 100) {
+    progress += 10;
+    if (progress > 100) progress = 100;
+    localStorage.setItem(courseId, progress);
+  }
+
+  loadMyLearning();
+}
+
 </script>
 
 </body>
