@@ -1,19 +1,36 @@
-exports.getAllCourses = (req, res) => {
-  res.status(200).json([
-    {
-      title: "HTML Basics",
-      description: "Learn HTML from scratch",
-      category: "Web Development"
-    },
-    {
-      title: "CSS Fundamentals",
-      description: "Master CSS styling",
-      category: "Web Development"
-    },
-    {
-      title: "JavaScript",
-      description: "Core JavaScript concepts",
-      category: "Programming"
+const Course = require("../models/course.model");
+
+exports.createCourse = async (req, res) => {
+  try {
+    const { title, description, category } = req.body;
+    const user = req.user; // teacher from login
+
+    if (user.role !== "teacher") {
+      return res.status(403).json({ message: "Only teachers can create courses" });
     }
-  ]);
+
+    const course = new Course({
+      title,
+      description,
+      category,
+      createdBy: user._id
+    });
+
+    await course.save();
+    res.status(201).json(course);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to create course" });
+  }
+};
+exports.getAllCourses = async (req, res) => {
+  try {
+    const courses = await Course.find()
+      .populate("createdBy", "name role")
+      .where("createdBy.role")
+      .equals("teacher");
+
+    res.status(200).json(courses);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch courses" });
+  }
 };

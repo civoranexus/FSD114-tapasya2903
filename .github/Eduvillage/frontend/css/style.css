@@ -104,21 +104,18 @@ button:hover, .btn:hover {
 }
 
 /*DASHBOARD*/
-/* =========================
-   DASHBOARD FIXED LAYOUT
-   ========================= */
-
 /* Layout */
 .dashboard-wrapper {
   display: flex;
   min-height: 100vh;
+  background-color: var(--bg);
 }
 
 /* Sidebar */
 .dashboard-sidebar {
   width: 240px;
-  background-color: var(--primary);
-  color: var(--white);
+  background-color:#0E2140;
+  color: white;
   padding: 25px;
 }
 
@@ -134,15 +131,17 @@ button:hover, .btn:hover {
 
 .dashboard-sidebar a {
   display: block;
-  color: var(--white);
+  color: white;
   text-decoration: none;
   margin: 12px 0;
+  padding: 8px 10px;
+  border-radius: 6px;
   transition: 0.3s;
 }
 
-.dashboard-sidebar a:hover {
-  color: var(--accent);
-  padding-left: 5px;
+.dashboard-sidebar a:hover,
+.dashboard-sidebar a.active {
+  background-color: rgba(255,255,255,0.15);
 }
 
 /* Main */
@@ -153,76 +152,90 @@ button:hover, .btn:hover {
 
 /* Topbar */
 .dashboard-topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background-color: var(--secondary);
-  padding: 15px 20px;
-  border-radius: 8px;
+  padding: 18px 24px;
+  border-radius: 10px;
   color: var(--white);
+  margin-bottom: 30px;
 }
 
-.dashboard-topbar input {
-  width: 280px;
-  padding: 8px 10px;
-  border-radius: 5px;
-  border: none;
-  outline: none;
-}
-
-/* Stats */
-.dashboard-stats {
-  display: flex;
-  gap: 20px;
-  margin: 30px 0;
-}
-
-.stat-card {
-  background-color: var(--white);
-  padding: 20px;
-  flex: 1;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
-.stat-card h3 {
+.dashboard-topbar h2 {
   margin: 0;
-  color: var(--primary);
+  font-size: 22px;
+  font-weight: 600;
 }
 
-/* Courses */
+/* Section Titles (Our Courses + My Learning) */
 .dashboard-courses h2 {
-  margin-bottom: 15px;
+  border-left: 5px solid var(--accent);
+  padding-left: 12px;
+  margin: 30px 0 20px;
   color: var(--primary);
+  font-size: 20px;
 }
 
+/* Course Grid */
 .course-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 25px;
 }
 
+/* Course Card */
 .course-card {
-  background-color: var(--white);
+  background-color: #a7adb9;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 12px;
   text-align: center;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
   transition: 0.3s;
 }
 
 .course-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
 }
 
+.course-card h3 {
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+
+.course-card p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Darker Button */
 .course-card button {
-  margin-top: 10px;
-  background-color: var(--accent);
-  color: var(--white);
+  margin-top: 12px;
+  background-color: #142C52;
+  color: white;
   border: none;
-  padding: 8px 14px;
-  border-radius: 5px;
+  padding: 9px 16px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.course-card button:hover {
+  background-color: #071426;
+}
+
+/* Progress Bar */
+progress {
+  width: 100%;
+  height: 8px;
+  margin: 10px 0;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #e5e5e5;
+  border-radius: 5px;
+}
+
+progress::-webkit-progress-value {
+  background-color: var(--accent);
+  border-radius: 5px;
 }
 
 /* Responsive */
@@ -234,29 +247,4 @@ button:hover, .btn:hover {
   .dashboard-sidebar {
     width: 100%;
   }
-
-  .dashboard-stats {
-    flex-direction: column;
-  }
-}
-.dashboard-sidebar a.active {
-  background-color: rgba(255,255,255,0.15);
-  padding: 8px;
-  border-radius: 5px;
-}
-
-progress {
-  width: 100%;
-  height: 8px;
-  margin: 8px 0;
-}
-
-progress::-webkit-progress-bar {
-  background-color: #eee;
-  border-radius: 5px;
-}
-
-progress::-webkit-progress-value {
-  background-color: var(--primary);
-  border-radius: 5px;
 }
