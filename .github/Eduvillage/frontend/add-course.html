@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Course | EduVillage</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+<div class="dashboard-wrapper">
+
+  <aside class="dashboard-sidebar">
+    <h3 style="color:white;">EduVillage</h3>
+    <p>Teacher Dashboard</p>
+
+    <a href="dashboard.html">Dashboard</a>
+    <a href="add-course.html" class="active">Add Course</a>
+    <a href="#" id="logoutBtn">Logout</a>
+  </aside>
+
+  <main class="dashboard-main">
+
+    <div class="dashboard-topbar">
+      <h2>Add New Course</h2>
+    </div>
+
+    <section class="dashboard-courses">
+     <div class="course-form-wrapper">
+  <h2>Add New Course</h2>
+
+  <form id="courseForm">
+    <div class="form-group">
+      <label>Course Title</label>
+      <input type="text" id="title" placeholder="Enter course title" />
+    </div>
+
+    <div class="form-group">
+      <label>Course Description</label>
+      <textarea id="description" placeholder="Enter course description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Category</label>
+      <input type="text" id="category" placeholder="e.g. Web Development" />
+    </div>
+
+    <button type="submit" class="primary-btn">Create Course</button>
+  </form>
+</div>
+</section>
+
+  </main>
+
+</div>
+
+<script>
+  
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if (!user || user.role !== "teacher") {
+    alert("Access denied. Teachers only.");
+    window.location.href = "dashboard.html";
+  }
+
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.removeItem("user");
+    window.location.href = "login.html";
+  });
+
+  document.getElementById("courseForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const title = document.getElementById("title").value.trim();
+  const description = document.getElementById("description").value.trim();
+  const category = document.getElementById("category").value.trim();
+  const message = document.getElementById("message");
+
+  message.textContent = "";
+  message.style.color = "red";
+
+  if (!title || !description || !category) {
+    message.textContent = "All fields are required";
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:5000/api/courses", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+        description,
+        category,
+        createdBy: user.id, // teacher id
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      message.textContent = data.message || "Failed to create course";
+      return;
+    }
+
+    message.style.color = "green";
+    message.textContent = "Course created successfully! Redirecting...";
+
+    setTimeout(() => {
+      window.location.href = "dashboard.html";
+    }, 1500);
+
+  } catch (error) {
+    message.textContent = "Server error. Please try again.";
+  }
+});
+
+ 
+</script>
+
+</body>
+</html>

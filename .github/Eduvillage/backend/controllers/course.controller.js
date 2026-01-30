@@ -3,7 +3,7 @@ const Course = require("../models/course.model");
 exports.createCourse = async (req, res) => {
   try {
     const { title, description, category } = req.body;
-    const user = req.user; // teacher from login
+    const user = req.user;
 
     if (user.role !== "teacher") {
       return res.status(403).json({ message: "Only teachers can create courses" });

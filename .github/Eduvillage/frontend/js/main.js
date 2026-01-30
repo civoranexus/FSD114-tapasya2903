@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
     message.textContent = "";
     message.style.color = "red";
 
+    // basic validation
     if (!email || !password) {
       message.textContent = "Email and password are required.";
       return;
@@ -89,14 +90,22 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
 
       if (!response.ok) {
-        message.textContent = data.message;
+        message.textContent = data.message || "Login failed.";
         return;
       }
 
+      // save user
       localStorage.setItem("user", JSON.stringify(data.user));
-      window.location.href = "dashboard.html";
-    } catch {
-      message.textContent = "Server error.";
+
+      // ✅ ROLE-BASED REDIRECT (FIX)
+      if (data.user.role === "teacher") {
+        window.location.href = "add-course.html";
+      } else {
+        window.location.href = "dashboard.html";
+      }
+
+    } catch (error) {
+      message.textContent = "Server error. Please try again.";
     }
   });
 });
