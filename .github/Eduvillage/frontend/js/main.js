@@ -96,12 +96,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // save user
       localStorage.setItem("user", JSON.stringify(data.user));
-
-      // ✅ ROLE-BASED REDIRECT (FIX)
       if (data.user.role === "teacher") {
         window.location.href = "add-course.html";
       } else {
-        window.location.href = "dashboard.html";
+        window.location.href = "teacherDashboard.html";
       }
 
     } catch (error) {

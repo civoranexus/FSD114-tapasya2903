@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="student-page">
+
+  <h1>Welcome Student</h1>
+  <a href="#" onclick="logout()">Logout</a>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user || user.role !== "student") {
+      window.location.href = "login.html";
+    }
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

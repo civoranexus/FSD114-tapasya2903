@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="teacher-page">
+
+  <aside class="sidebar">
+    <h3>Teacher</h3>
+    <a href="teacherDashboard.html">Home</a>
+    <a href="add-course.html">Add Course</a>
+    <a href="#" onclick="logout()">Logout</a>
+  </aside>
+
+  <main class="content">
+    <h1>Welcome Teacher</h1>
+  </main>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user || user.role !== "teacher") {
+      window.location.href = "login.html";
+    }
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>
