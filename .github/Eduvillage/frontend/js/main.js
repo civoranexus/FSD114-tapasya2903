@@ -11,6 +11,7 @@ if (signupBtn) {
     message.textContent = "";
     message.style.color = "red";
 
+
     if (!name || !email || !password) {
       message.textContent = "All fields are required.";
       return;
@@ -33,11 +34,14 @@ if (signupBtn) {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password, role }),
-      });
+      const response = await fetch(
+        "http://localhost:5000/api/users/register",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, password, role }),
+        }
+      );
 
       const data = await response.json();
 
@@ -47,26 +51,22 @@ if (signupBtn) {
       }
 
       message.style.color = "green";
-      message.textContent = "Signup successful! Redirecting...";
+      message.textContent = "Signup successful! Redirecting to login...";
 
       setTimeout(() => {
         window.location.href = "login.html";
       }, 1500);
-    } catch {
-      message.textContent = "Server error.";
+    } catch (error) {
+      message.textContent = "Server error. Please try again.";
     }
   });
 }
 
-
-/* LOGIN */
 document.addEventListener("DOMContentLoaded", () => {
   const loginBtn = document.getElementById("loginBtn");
   if (!loginBtn) return;
 
-  loginBtn.addEventListener("click", async (e) => {
-    e.preventDefault();
-
+  loginBtn.addEventListener("click", async () => {
     const email = document.getElementById("loginEmail").value.trim();
     const password = document.getElementById("loginPassword").value;
     const message = document.getElementById("loginMessage");
@@ -74,18 +74,20 @@ document.addEventListener("DOMContentLoaded", () => {
     message.textContent = "";
     message.style.color = "red";
 
-    // basic validation
     if (!email || !password) {
       message.textContent = "Email and password are required.";
       return;
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/users/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        "http://localhost:5000/api/users/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       const data = await response.json();
 
@@ -94,13 +96,19 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // save user
+  
       localStorage.setItem("user", JSON.stringify(data.user));
-      if (data.user.role === "teacher") {
-        window.location.href = "add-course.html";
-      } else {
-        window.location.href = "teacherDashboard.html";
-      }
+
+      message.style.color = "green";
+      message.textContent = "Login successful! Redirecting...";
+
+      setTimeout(() => {
+        if (data.user.role === "teacher") {
+          window.location.href = "teacherDashboard.html";
+        } else {
+          window.location.href = "studentDashboard.html";
+        }
+      }, 800);
 
     } catch (error) {
       message.textContent = "Server error. Please try again.";

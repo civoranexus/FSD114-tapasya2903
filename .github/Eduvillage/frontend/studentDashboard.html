@@ -5,22 +5,72 @@
   <title>Student Dashboard</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="student-page">
+<body>
 
-  <h1>Welcome Student</h1>
-  <a href="#" onclick="logout()">Logout</a>
+  <div class="dashboard">
 
-  <script>
-    const user = JSON.parse(localStorage.getItem("user"));
+   <aside class="sidebar">
+  <h2>EduVillage</h2>
+  <ul>
+    <li class="active">
+      <a href="studentDashboard.html">Dashboard</a>
+    </li>
+    <li>
+      <a href="myCourse.html">My Courses</a>
+    </li>
+    <li>Profile</li>
+    <li><a href="#" onclick="logout()">Logout</a></li>
+  </ul>
+</aside>
 
-    if (!user || user.role !== "student") {
-      window.location.href = "login.html";
-    }
+    <!-- Main Content -->
+    <main class="content">
+  <h1>Welcome, <span id="studentName"></span> 👋</h1>
+  <p>Courses available for you</p>
 
-    function logout() {
-      localStorage.clear();
-      window.location.href = "login.html";
-    }
-  </script>
+  <div class="card-container">
+    <div class="card">
+      <h3>Web Development Basics</h3>
+      <p>Learn HTML, CSS, and basic layouts.</p>
+      <a class="btn" onclick="openCourse('Web Development Basics')">View Course</a>
+    </div>
+
+    <div class="card">
+      <h3>JavaScript Fundamentals</h3>
+      <p>Understand JS, events, and logic.</p>
+      <a class="btn" onclick="openCourse('JavaScript Fundamentals')">View Course</a>
+    </div>
+
+    <div class="card">
+      <h3>Backend with Node.js</h3>
+      <p>Intro to Node, Express, and APIs.</p>
+      <a class="btn" onclick="openCourse('Backend with Node.js')">View Course</a>
+    </div>
+  </div>
+</main>
+
+  </div>
+
+ <script>
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if (!user || user.role !== "student") {
+    window.location.href = "login.html";
+  }
+
+  document.getElementById("studentName").textContent = user.name;
+
+  function logout() {
+    localStorage.clear();
+    window.location.href = "login.html";
+  }
+
+  function openCourse(courseName) {
+    localStorage.setItem("selectedCourse", courseName);
+    window.location.href = "myCourse.html";
+  }
+</script>
+
+
 </body>
 </html>

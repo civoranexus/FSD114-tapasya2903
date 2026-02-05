@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Course Overview</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="dashboard">
+
+<aside class="sidebar">
+  <h2>EduVillage</h2>
+  <ul>
+    <li>
+      <a href="studentDashboard.html">Dashboard</a>
+    </li>
+    <li class="active">
+      <a href="myCourse.html">My Courses</a>
+    </li>
+    <li>Profile</li>
+    <li><a href="#" onclick="logout()">Logout</a></li>
+  </ul>
+</aside>
+
+
+
+    <!-- Main Content -->
+    <main class="content">
+      <h1 id="courseTitle"></h1>
+      <p id="courseDescription"></p>
+
+      <div class="card-container">
+        <div class="card">
+          <h3>Course Content</h3>
+          <p>✔ Video Lessons</p>
+          <p>✔ Reading Material</p>
+          <p>✔ Assignments</p>
+        </div>
+
+        <div class="card">
+          <h3>Progress</h3>
+          <p>Completion: 30%</p>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem("user"));
+    const course = localStorage.getItem("selectedCourse");
+
+    if (!user || user.role !== "student") {
+      window.location.href = "login.html";
+    }
+
+   if (!course) {
+  document.getElementById("courseTitle").textContent = "No course selected";
+  document.getElementById("courseDescription").textContent =
+    "Please go to Dashboard and select a course to view details.";
+}
+
+
+    document.getElementById("courseTitle").textContent = course;
+
+    // simple static descriptions
+    const descriptions = {
+      "Web Development Basics": "This course covers HTML, CSS, and basic website structure.",
+      "JavaScript Fundamentals": "Learn JavaScript syntax, functions, and DOM manipulation.",
+      "Backend with Node.js": "Introduction to backend development using Node.js and Express."
+    };
+
+    document.getElementById("courseDescription").textContent =
+      descriptions[course];
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+
+    function goDashboard() {
+      window.location.href = "studentDashboard.html";
+    }
+  </script>
+
+</body>
+</html>

@@ -5,30 +5,64 @@
   <title>Teacher Dashboard</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="teacher-page">
+<body>
 
-  <aside class="sidebar">
-    <h3>Teacher</h3>
-    <a href="teacherDashboard.html">Home</a>
-    <a href="add-course.html">Add Course</a>
-    <a href="#" onclick="logout()">Logout</a>
-  </aside>
+  <div class="dashboard">
 
-  <main class="content">
-    <h1>Welcome Teacher</h1>
-  </main>
+    <aside class="sidebar">
+      <h2>EduVillage</h2>
+      <ul>
+        <li class="active">
+          <a href="teacherDashboard.html">Dashboard</a>
+        </li>
+        <li>
+          <a href="add-course.html">Add Course</a>
+        </li>
+        <li>
+          <a href="teacherCourses.html">My Courses</a>
+        </li>
+        <li>
+          <a href="#" onclick="logout()">Logout</a>
+        </li>
+      </ul>
+    </aside>
+
+    
+    <main class="content">
+      <h1>Welcome, <span id="teacherName"></span> 👋</h1>
+      <p>Manage your courses and students here.</p>
+
+      <div class="card-container">
+        <div class="card">
+          <h3>Total Courses</h3>
+          <p>3 Courses</p>
+        </div>
+
+        <div class="card">
+          <h3>Active Students</h3>
+          <p>25 Students</p>
+        </div>
+      </div>
+    </main>
+
+  </div>
 
   <script>
     const user = JSON.parse(localStorage.getItem("user"));
 
+
     if (!user || user.role !== "teacher") {
       window.location.href = "login.html";
     }
+
+    
+    document.getElementById("teacherName").textContent = user.name;
 
     function logout() {
       localStorage.clear();
       window.location.href = "login.html";
     }
   </script>
+
 </body>
 </html>
