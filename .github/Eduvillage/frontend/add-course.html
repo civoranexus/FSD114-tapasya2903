@@ -9,9 +9,8 @@
 
   <div class="dashboard">
 
-    <!-- SAME SIDEBAR AS TEACHER DASHBOARD -->
     <aside class="sidebar">
-      <h2>EduVillage</h2>
+      <h2 style="color:white;">EduVillage</h2>
       <ul>
         <li>
           <a href="teacherDashboard.html">Dashboard</a>
@@ -20,18 +19,19 @@
           <a href="add-course.html">Add Course</a>
         </li>
         <li>
-          <a href="teacherCourses.html">My Courses</a>
+          <a href="teacherCourse.html">My Courses</a>
         </li>
+         <li><a href="teacherProfile.html">Profile</a></li>
         <li>
           <a href="#" onclick="logout()">Logout</a>
         </li>
       </ul>
     </aside>
 
-    <!-- MAIN CONTENT (FORM UNCHANGED) -->
+
     <main class="content">
 
-      <!-- ⬇⬇ YOUR EXISTING FORM UI ⬇⬇ -->
+  
       <div class="card" style="max-width: 650px; margin: auto;">
         <h1 style="text-align:center; margin-bottom:20px;">Add New Course</h1>
 
@@ -52,32 +52,11 @@
 
         </form>
       </div>
-      <!-- ⬆⬆ FORM ENDS ⬆⬆ -->
+  
 
     </main>
 
   </div>
-
-  <script>
-    const user = JSON.parse(localStorage.getItem("user"));
-
-    // Protect teacher route
-    if (!user || user.role !== "teacher") {
-      window.location.href = "login.html";
-    }
-
-    function logout() {
-      localStorage.clear();
-      window.location.href = "login.html";
-    }
-
-    // Demo submit (NO UI CHANGE)
-    document.getElementById("addCourseForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      alert("Course created successfully (demo)");
-      this.reset();
-    });
-  </script>
-
+  <script src="js/main.js"></script>
 </body>
 </html>

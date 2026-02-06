@@ -10,7 +10,7 @@
   <div class="dashboard">
 
     <aside class="sidebar">
-      <h2>EduVillage</h2>
+      <h2 style="color:white;">EduVillage</h2>
       <ul>
         <li class="active">
           <a href="teacherDashboard.html">Dashboard</a>
@@ -19,8 +19,9 @@
           <a href="add-course.html">Add Course</a>
         </li>
         <li>
-          <a href="teacherCourses.html">My Courses</a>
+          <a href="teacherCourse.html">My Courses</a>
         </li>
+        <li><a href="teacherProfile.html">Profile</a></li>
         <li>
           <a href="#" onclick="logout()">Logout</a>
         </li>
@@ -46,23 +47,6 @@
     </main>
 
   </div>
-
-  <script>
-    const user = JSON.parse(localStorage.getItem("user"));
-
-
-    if (!user || user.role !== "teacher") {
-      window.location.href = "login.html";
-    }
-
-    
-    document.getElementById("teacherName").textContent = user.name;
-
-    function logout() {
-      localStorage.clear();
-      window.location.href = "login.html";
-    }
-  </script>
-
+  <script src="js/main.js"></script>
 </body>
 </html>
