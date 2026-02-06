@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="dashboard">
+
+   <aside class="sidebar">
+  <h2 style="color:white;">EduVillage</h2>
+  <ul>
+    <li class="active">
+      <a href="studentDashboard.html">Dashboard</a>
+    </li>
+    <li>
+      <a href="studentCourse.html">My Courses</a>
+    </li>
+    <li>
+      <a href="studentProfile.html">Profile</a>
+    </li>
+    <li><a href="#" onclick="logout()">Logout</a></li>
+  </ul>
+</aside>
+
+    <!-- Main Content -->
+    <main class="content">
+  <h1>Welcome, <span id="studentName"></span> 👋</h1>
+  <p>Courses available for you</p>
+
+  <div class="card-container">
+    <div class="card">
+      <h3>Web Development Basics</h3>
+      <p>Learn HTML, CSS, and basic layouts.</p>
+      <a class="btn" onclick="openCourse('Web Development Basics')">View Course</a>
+    </div>
+
+    <div class="card">
+      <h3>JavaScript Fundamentals</h3>
+      <p>Understand JS, events, and logic.</p>
+      <a class="btn" onclick="openCourse('JavaScript Fundamentals')">View Course</a>
+    </div>
+
+    <div class="card">
+      <h3>Backend with Node.js</h3>
+      <p>Intro to Node, Express, and APIs.</p>
+      <a class="btn" onclick="openCourse('Backend with Node.js')">View Course</a>
+    </div>
+  </div>
+</main>
+
+  </div>
+
+ <script>
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if (!user || user.role !== "student") {
+    window.location.href = "login.html";
+  }
+
+  document.getElementById("studentName").textContent = user.name;
+
+  function logout() {
+    localStorage.clear();
+    window.location.href = "login.html";
+  }
+
+  function openCourse(courseName) {
+    localStorage.setItem("selectedCourse", courseName);
+    window.location.href = "myCourse.html";
+  }
+</script>
+
+
+</body>
+</html>

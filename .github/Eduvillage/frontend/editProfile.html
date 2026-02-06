@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Profile</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2 style="color:white;">EduVillage</h2>
+    <ul>
+      <li><a href="studentDashboard.html">Dashboard</a></li>
+      <li><a href="studentCourse.html">My Courses</a></li>
+      <li class="active"><a href="editProfile.html">Edit Profile</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="content">
+
+    <div class="card" style="max-width:650px; margin:auto;">
+      <h1 style="text-align:center; margin-bottom:30px;">
+        Edit Profile
+      </h1>
+
+      <form id="editProfileForm">
+
+        <!-- Profile Info -->
+        <label>Name</label>
+        <input type="text" id="name" required>
+
+        <label>Email</label>
+        <input type="email" id="email" required>
+
+        <label>Role</label>
+        <input type="text" id="role" disabled>
+
+        <hr style="margin:25px 0;">
+
+        <!-- Change Password -->
+        <h3 style="margin-bottom:15px;">Change Password</h3>
+
+        <label>Current Password</label>
+        <input type="password" id="oldPassword" placeholder="Enter current password">
+
+        <label>New Password</label>
+        <input type="password" id="newPassword" placeholder="Enter new password">
+
+        <label>Confirm New Password</label>
+        <input type="password" id="confirmPassword" placeholder="Confirm new password">
+
+        <button type="submit" class="btn" style="width:100%; margin-top:20px;">
+          Update Profile
+        </button>
+
+      </form>
+    </div>
+
+  </main>
+
+</div>
+<script src="js/main.js"></script>
+</body>
+</html>
