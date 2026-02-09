@@ -1,23 +1,22 @@
-/* ======================
-   GLOBAL LOGOUT
-   ====================== */
+/*GLOBAL LOGOUT*/
 function logout() {
-  localStorage.clear();
+  localStorage.removeItem("user");
+  localStorage.removeItem("selectedCourse"); 
   window.location.href = "login.html";
 }
 
-/* ======================
-   SIGNUP
-   ====================== */
+
+/*SIGNUP*/
 const signupBtn = document.getElementById("signupBtn");
 
 if (signupBtn) {
   const params = new URLSearchParams(window.location.search);
   const roleFromHome = params.get("role");
 
-  if (!roleFromHome) {
-    window.location.href = "homePage.html";
-  }
+ if (!roleFromHome) {
+  window.location.href = "homePage.html";
+}
+
 
   document.getElementById("role").value = roleFromHome;
 
@@ -62,9 +61,7 @@ if (signupBtn) {
   });
 }
 
-/* ======================
-   LOGIN
-   ====================== */
+/*LOGIN*/
 const loginBtn = document.getElementById("loginBtn");
 
 if (loginBtn) {
@@ -102,66 +99,149 @@ if (loginBtn) {
   });
 }
 
-/* ======================
-   STUDENT DASHBOARD
-   ====================== */
+/*STUDENT DASHBOARD*/
 function openCourse(courseName) {
   localStorage.setItem("selectedCourse", courseName);
   window.location.href = "studentCourse.html";
 }
 
-/* ======================
-   STUDENT COURSE PAGE
-   ====================== */
-const courseTitle = document.getElementById("courseTitle");
+/*STUDENT COURSE PAGE*/
+const courseTitleEl = document.getElementById("courseTitle");
 
-if (courseTitle) {
+if (courseTitleEl) {
   const user = JSON.parse(localStorage.getItem("user"));
-  const course = localStorage.getItem("selectedCourse");
-  const desc = document.getElementById("courseDescription");
 
   if (!user || user.role !== "student") {
     window.location.href = "login.html";
+    return;
   }
+
+  const selectedCourseTitle = localStorage.getItem("selectedCourse");
+  const descEl = document.getElementById("courseDescription");
+
+  if (!selectedCourseTitle) {
+    courseTitleEl.textContent = "No course selected";
+    descEl.textContent =
+      "Please go to dashboard and select a course.";
+    return;
+  }
+
+  const courses = JSON.parse(localStorage.getItem("courses")) || [];
+
+  const course = courses.find(
+    c => c.title === selectedCourseTitle
+  );
 
   if (!course) {
-    courseTitle.textContent = "No course selected";
-    desc.textContent =
-      "Please go to dashboard and select a course.";
-  } else {
-    const descriptions = {
-      "Web Development Basics": "HTML, CSS and basic layouts.",
-      "JavaScript Fundamentals": "JS syntax, DOM and logic.",
-      "Backend with Node.js": "Node, Express and APIs."
-    };
-
-    courseTitle.textContent = course;
-    desc.textContent = descriptions[course] || "Course details coming soon.";
+    courseTitleEl.textContent = selectedCourseTitle;
+    descEl.textContent = "Course details not found.";
+    return;
   }
+
+  courseTitleEl.textContent = course.title;
+  descEl.textContent = course.description;
 }
 
-/* ======================
-   ADD COURSE (TEACHER)
-   ====================== */
+
+/*ADD COURSE*/
 const addCourseForm = document.getElementById("addCourseForm");
 
 if (addCourseForm) {
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if (!user) {
+    window.location.href = "login.html";
+  }
+
+  if (user.role !== "teacher") {
+    window.location.href = "studentDashboard.html";
+  }
+
+  addCourseForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const title = document.getElementById("addCourseTitle").value.trim();
+    const description = document.getElementById("addCourseDescription").value.trim();
+    const category = document.getElementById("courseCategory").value.trim();
+
+    if (!title || !description || !category) {
+      alert("All fields are required");
+    }
+
+    const courses = JSON.parse(localStorage.getItem("courses")) || [];
+
+    courses.push({
+      title,
+      description,
+      category,
+      teacherEmail: user.email
+    });
+
+    localStorage.setItem("courses", JSON.stringify(courses));
+    alert("Course added successfully");
+
+    window.location.href = "teacherCourse.html";
+  });
+}
+
+/*TEACHER COURSES*/
+const teacherCoursesDiv = document.getElementById("teacherCourses");
+
+if (teacherCoursesDiv) {
   const user = JSON.parse(localStorage.getItem("user"));
 
   if (!user || user.role !== "teacher") {
     window.location.href = "login.html";
   }
 
-  addCourseForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    alert("Course created successfully (demo)");
-    addCourseForm.reset();
-  });
+  const courses = JSON.parse(localStorage.getItem("courses")) || [];
+  const myCourses = courses.filter(c => c.teacherEmail === user.email);
+
+  teacherCoursesDiv.innerHTML =
+    myCourses.length === 0
+      ? "<p>No courses created yet.</p>"
+      : myCourses.map(course => `
+          <div class="card">
+            <h3>${course.title}</h3>
+            <p>${course.description}</p>
+            <small>${course.category}</small>
+          </div>
+        `).join("");
 }
 
-/* ======================
-   EDIT PROFILE
-   ====================== */
+/*STUDENT DASHBOARD COURSE*/
+const studentCoursesDiv = document.getElementById("studentCourses");
+
+if (studentCoursesDiv) {
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if (!user || user.role !== "student") {
+    window.location.href = "login.html";
+  }
+
+  const courses = JSON.parse(localStorage.getItem("courses")) || [];
+
+  if (courses.length === 0) {
+    studentCoursesDiv.innerHTML = "<p>No courses available.</p>";
+  } else {
+    studentCoursesDiv.innerHTML = "";
+
+    courses.forEach(course => {
+      studentCoursesDiv.innerHTML += `
+        <div class="card">
+          <h3>${course.title}</h3>
+          <p>${course.description}</p>
+          <a class="btn" onclick="openCourse('${course.title}')">
+            View Course
+          </a>
+        </div>
+      `;
+    });
+  }
+}
+
+
+/*EDIT PROFILE*/
 const editProfileForm = document.getElementById("editProfileForm");
 
 if (editProfileForm) {
@@ -182,7 +262,6 @@ if (editProfileForm) {
     user.email = document.getElementById("email").value.trim();
 
     localStorage.setItem("user", JSON.stringify(user));
-    alert("Profile updated");
 
     window.location.href =
       user.role === "teacher"
@@ -190,3 +269,16 @@ if (editProfileForm) {
         : "studentProfile.html";
   });
 }
+
+/*PROFILE DISPLAY*/
+document.addEventListener("DOMContentLoaded", () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (!user) return;
+
+  const nameEl = document.getElementById("profileName");
+  if (!nameEl) return;
+
+  document.getElementById("profileName").value = user.name;
+  document.getElementById("profileEmail").value = user.email;
+  document.getElementById("profileRole").value = user.role;
+});

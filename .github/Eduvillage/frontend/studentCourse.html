@@ -2,84 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Course Overview</title>
+  <title>Add New Course</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <div class="dashboard">
 
-<aside class="sidebar">
-  <h2 style="color:white;">EduVillage</h2>
-  <ul>
-    <li>
-      <a href="studentDashboard.html">Dashboard</a>
-    </li>
-    <li class="active">
-      <a href="studentCourse.html">My Courses</a>
-    </li>
-    <li>Profile</li>
-    <li><a href="#" onclick="logout()">Logout</a></li>
-  </ul>
-</aside>
+    <aside class="sidebar">
+      <h2 style="color:white;">EduVillage</h2>
+      <ul>
+        <li>
+          <a href="teacherDashboard.html">Dashboard</a>
+        </li>
+        <li class="active">
+          <a href="add-course.html">Add Course</a>
+        </li>
+        <li>
+          <a href="teacherCourse.html">My Courses</a>
+        </li>
+         <li><a href="teacherProfile.html">Profile</a></li>
+        <li>
+          <a href="#" onclick="logout()">Logout</a>
+        </li>
+      </ul>
+    </aside>
+
 
     <main class="content">
-      <h1 id="courseTitle"></h1>
-      <p id="courseDescription"></p>
 
-      <div class="card-container">
-        <div class="card">
-          <h3>Course Content</h3>
-          <p>✔ Video Lessons</p>
-          <p>✔ Reading Material</p>
-          <p>✔ Assignments</p>
-        </div>
-
-        <div class="card">
-          <h3>Progress</h3>
-          <p>Completion: 30%</p>
-        </div>
-      </div>
-    </main>
-
+  
+      <div class="card" style="max-width: 650px; margin: auto;">
+        <h1 style="text-align:center; margin-bottom:20px;">Add New Course</h1>
+        <form id="addCourseForm">
+  <div class="form-group">
+    <label>Course Title</label>
+    <input type="text" id="courseTitle" required>
   </div>
 
-  <script>
-    const user = JSON.parse(localStorage.getItem("user"));
-    const course = localStorage.getItem("selectedCourse");
+  <div class="form-group">
+    <label>Course Description</label>
+    <textarea id="courseDescription" required></textarea>
+  </div>
 
-    if (!user || user.role !== "student") {
-      window.location.href = "login.html";
-    }
+  <div class="form-group">
+    <label>Category</label>
+    <input type="text" id="courseCategory" required>
+  </div>
 
-   if (!course) {
-  document.getElementById("courseTitle").textContent = "No course selected";
-  document.getElementById("courseDescription").textContent =
-    "Please go to Dashboard and select a course to view details.";
-}
-
-
-    document.getElementById("courseTitle").textContent = course;
-
-    // simple static descriptions
-    const descriptions = {
-      "Web Development Basics": "This course covers HTML, CSS, and basic website structure.",
-      "JavaScript Fundamentals": "Learn JavaScript syntax, functions, and DOM manipulation.",
-      "Backend with Node.js": "Introduction to backend development using Node.js and Express."
-    };
-
-    document.getElementById("courseDescription").textContent =
-      descriptions[course];
-
-    function logout() {
-      localStorage.clear();
-      window.location.href = "login.html";
-    }
-
-    function goDashboard() {
-      window.location.href = "studentDashboard.html";
-    }
-  </script>
-
+  <button type="submit" class="primary-btn">Create Course</button>
+</form>
+</div>
+</main>
+</div>
+<script src="js/main.js"></script>
 </body>
 </html>
