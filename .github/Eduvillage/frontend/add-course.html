@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Course</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+  <aside class="sidebar">
+    <h2 style="color:white;">EduVillage</h2>
+    <ul>
+      <li><a href="teacherDashboard.html">Dashboard</a></li>
+      <li class="active"><a href="add-course.html">Add Course</a></li>
+      <li><a href="teacherCourse.html">My Courses</a></li>
+      <li><a href="teacherProfile.html">Profile</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </aside>
+
+  <main class="content">
+
+    <div class="card" style="max-width:650px; margin:auto;">
+      <h1 style="text-align:center; margin-bottom:20px;">Add New Course</h1>
+
+      <form id="addCourseForm">
+        <div class="form-group">
+          <label>Course Title</label>
+          <input type="text" id="addCourseTitle" required>
+        </div>
+
+        <div class="form-group">
+          <label>Course Description</label>
+          <textarea id="addCourseDescription" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Category</label>
+          <input type="text" id="courseCategory" required>
+        </div>
+
+        <div class="form-group">
+  <label>Study Materials (one per line)</label>
+  <textarea
+    id="courseMaterials"
+    placeholder="Video: https://youtube.com/...\nPDF: https://example.com/file.pdf\nLink: https://w3schools.com"
+    required
+  ></textarea>
+</div>
+
+
+        <button type="submit" class="primary-btn">Create Course</button>
+      </form>
+    </div>
+
+  </main>
+
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

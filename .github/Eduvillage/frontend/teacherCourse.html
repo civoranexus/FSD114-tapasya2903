@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Courses</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+  <aside class="sidebar">
+    <h2 style="color:white;">EduVillage</h2>
+    <ul>
+      <li><a href="teacherDashboard.html">Dashboard</a></li>
+      <li><a href="add-course.html">Add Course</a></li>
+      <li class="active"><a href="teacherCourse.html">My Courses</a></li>
+      <li><a href="teacherProfile.html">Profile</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </aside>
+
+  <main class="content">
+    <h1>My Courses</h1>
+    <p>Courses created by you</p>
+
+  
+    <div class="card-container" id="teacherCourses"></div>
+  </main>
+
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

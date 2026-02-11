@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="dashboard">
+
+    <aside class="sidebar">
+      <h2 style="color:white;">EduVillage</h2>
+      <ul>
+        <li class="active">
+          <a href="teacherDashboard.html">Dashboard</a>
+        </li>
+        <li>
+          <a href="add-course.html">Add Course</a>
+        </li>
+        <li>
+          <a href="teacherCourse.html">My Courses</a>
+        </li>
+        <li><a href="teacherProfile.html">Profile</a></li>
+        <li>
+          <a href="#" onclick="logout()">Logout</a>
+        </li>
+      </ul>
+    </aside>
+
+    
+    <main class="content">
+      <h1>Welcome, <span id="teacherName"></span> 👋</h1>
+      <p>Manage your courses and students here.</p>
+
+      <div class="card-container" id="teacherCourses">
+        <div class="card">
+          <h3>Total Courses</h3>
+          <p>3 Courses</p>
+        </div>
+
+        <div class="card">
+          <h3>Active Students</h3>
+          <p>25 Students</p>
+        </div>
+      </div>
+    </main>
+
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>

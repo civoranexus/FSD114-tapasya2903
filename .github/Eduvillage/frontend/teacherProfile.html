@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2 style="color:white;">EduVillage</h2>
+    <ul>
+      <li><a href="teacherDashboard.html">Dashboard</a></li>
+      <li><a href="add-course.html">Add Course</a></li>
+      <li><a href="teacherCourses.html">My Courses</a></li>
+      <li class="active"><a href="teacherProfile.html">Profile</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="content">
+
+    <div class="card" style="max-width:650px; margin:auto;">
+      <h1 style="text-align:center; margin-bottom:30px;">
+        Profile Information
+      </h1>
+
+      <form>
+
+        <label>Name</label>
+        <input type="text" id="profileName" disabled>
+
+        <label>Email</label>
+        <input type="text" id="profileEmail" disabled>
+
+        <label>Role</label>
+        <input type="text" id="profileRole" disabled>
+<a href="editProfile.html" class="btn" style="display:block; text-align:center;">
+  Edit Profile
+</a>
+
+
+      </form>
+    </div>
+
+  </main>
+
+</div>
+<script src="js/main.js"></script>
+</body>
+</html>

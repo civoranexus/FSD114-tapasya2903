@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+  <aside class="sidebar">
+    <h2 style="color:white;">EduVillage</h2>
+    <ul>
+      <li class="active">
+        <a href="studentDashboard.html">Dashboard</a>
+      </li>
+      <li>
+        <a href="studentMyCourses.html">My Courses</a>
+      </li>
+      <li>
+        <a href="studentProfile.html">Profile</a>
+      </li>
+      <li>
+        <a href="#" onclick="logout()">Logout</a>
+      </li>
+    </ul>
+  </aside>
+
+  <main class="content">
+    <h1>Welcome, <span id="studentName"></span> 👋</h1>
+    <p>Courses available for you</p>
+    <div class="card-container" id="studentCourses"></div>
+  </main>
+
+</div>
+<script src="js/main.js"></script>
+</body>
+</html>
