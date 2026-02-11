@@ -7,54 +7,33 @@
 </head>
 <body>
 
-  <div class="dashboard">
+<div class="dashboard">
 
-   <aside class="sidebar">
-  <h2 style="color:white;">EduVillage</h2>
-  <ul>
-    <li class="active">
-      <a href="studentDashboard.html">Dashboard</a>
-    </li>
-    <li>
-      <a href="studentCourse.html">My Courses</a>
-    </li>
-    <li>
-      <a href="studentProfile.html">Profile</a>
-    </li>
-    <li><a href="#" onclick="logout()">Logout</a></li>
-  </ul>
-</aside>
+  <aside class="sidebar">
+    <h2 style="color:white;">EduVillage</h2>
+    <ul>
+      <li class="active">
+        <a href="studentDashboard.html">Dashboard</a>
+      </li>
+      <li>
+        <a href="studentMyCourses.html">My Courses</a>
+      </li>
+      <li>
+        <a href="studentProfile.html">Profile</a>
+      </li>
+      <li>
+        <a href="#" onclick="logout()">Logout</a>
+      </li>
+    </ul>
+  </aside>
 
-    <!-- Main Content -->
-    <main class="content">
-  <h1>Welcome, <span id="studentName"></span> 👋</h1>
-  <p>Courses available for you</p>
+  <main class="content">
+    <h1>Welcome, <span id="studentName"></span> 👋</h1>
+    <p>Courses available for you</p>
+    <div class="card-container" id="studentCourses"></div>
+  </main>
 
-  <div class="card-container" id="studentCourses"></div>
-</main>
-
-  </div>
-
- <script>
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  if (!user || user.role !== "student") {
-    window.location.href = "login.html";
-  }
-
-  document.getElementById("studentName").textContent = user.name;
-
-  function logout() {
-    localStorage.clear();
-    window.location.href = "login.html";
-  }
-
-  function openCourse(courseName) {
-    localStorage.setItem("selectedCourse", courseName);
-    window.location.href = "myCourse.html";
-  }
-</script>
-
-
+</div>
+<script src="js/main.js"></script>
 </body>
 </html>
