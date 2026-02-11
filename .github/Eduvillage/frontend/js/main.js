@@ -17,7 +17,7 @@ if (signupBtn) {
   const roleFromHome = params.get("role");
 
   if (!roleFromHome) {
-    window.location.href = "homePage.html";
+    window.location.href = "index.html";
   } else {
     document.getElementById("role").value = roleFromHome;
 
